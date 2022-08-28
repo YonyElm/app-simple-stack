@@ -1,0 +1,42 @@
+
+services:
+  db:
+    image: mysql:8.0.29
+    restart: always
+    environment:
+      - "MYSQL_DATABASE=example"
+      - "MYSQL_ROOT_PASSWORD=123456"
+      - "MYSQL_USER=user1"
+      - "MYSQL_PASSWORD=123456"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - backnet
+
+  backend:
+    build: 
+      context: ./backend
+    restart: always
+    networks:
+      - backnet
+      - frontnet
+    depends_on:
+      - db
+      
+  frontend:
+    build: 
+      context: ./frontend
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - frontnet
+    depends_on:
+      - backend
+
+volumes:
+  db-data:
+
+networks:
+  backnet:
+  frontnet:
