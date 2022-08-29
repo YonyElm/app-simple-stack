@@ -20,11 +20,10 @@ def settings():
     dbname   = request.form['dbname']
     username = request.form['username']
     password = request.form['password']
-    # if (endpoint == "db" and dbname == "example" and username == "user1" and password == "123456"):
     global dbconn
     if (not dbconn or not dbconn.is_connected()):
         dbconn = DBManager(endpoint, dbname, username, password)
-        dbconn.conntect()
+        dbconn.connect()
         dbconn.populate_db() # Every connection resets DB (Ensuring table is ready)
     return redirect("/index") # <domain>/index
 

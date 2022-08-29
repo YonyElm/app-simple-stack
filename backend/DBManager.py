@@ -11,7 +11,7 @@ class DBManager:
         self.connection = None
         self.cursor = None
     
-    def conntect(self):
+    def connect(self):
         try:
             self.connection = mysql.connector.connect(
                 host=self.host,
@@ -24,7 +24,7 @@ class DBManager:
         except:
             print('Connection to DB failed', file=sys.stderr)
     
-    ## Reseting the DB
+    ## Resting the DB
     def populate_db(self):
         if (self.cursor):
             self.cursor.execute('DROP TABLE IF EXISTS items')
@@ -47,7 +47,7 @@ class DBManager:
             except:
                 print('Write to DB failed, maybe key exists already', file=sys.stderr)
     
-    ## Read all titels from DB
+    ## Read all items names from DB
     def query_item_names(self):
         rec = []
         if (self.cursor):
