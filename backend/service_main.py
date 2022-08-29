@@ -26,7 +26,7 @@ def settings():
         dbconn = DBManager(endpoint, dbname, username, password)
         dbconn.conntect()
         dbconn.populate_db() # Every connection resets DB (Ensuring table is ready)
-    return redirect("http://localhost/index")
+    return redirect("/index") # <domain>/index
 
 
 @server.route('/proxy/add_item_to_db', methods = ['POST'])
@@ -36,7 +36,7 @@ def addItem():
     global dbconn
     if (dbconn.is_connected()):
         dbconn.insert_records(itemNum, itemName)
-    return redirect("http://localhost/index")
+    return redirect("/index") # <domain>/index
 
 @server.route('/proxy/read_db', methods = ['GET'])
 def listName():
