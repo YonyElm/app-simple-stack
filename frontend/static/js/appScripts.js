@@ -1,7 +1,7 @@
 // When page loads assign element with value1, make a request to the server, and update the element with value2 when resutl comes back
 document.addEventListener('DOMContentLoaded', async (event) => {
     document.getElementById('conn_status').innerHTML = '<div>Loading...</div>';
-    var response = await fetch('http://localhost/proxy/db_conn_status');
+    var response = await fetch('proxy/db_conn_status');
     const myJson = await response.json();
     // console.log(myJson);
     var isConnectedToDB = myJson.value;
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     // Once connection to the DB is made, print content of the DB
     if (isConnectedToDB) {
         // Read values from DB
-        var response2 = await fetch('http://localhost/proxy/read_db');
+        var response2 = await fetch('proxy/read_db');
         const myJson2 = await response2.json();
         // console.log(myJson2);
         var dbValues = myJson2.value;
