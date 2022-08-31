@@ -1,11 +1,11 @@
-// When page loads assign element with value1, make a request to the server, and update the element with value2 when resutl comes back
+// When page loads assign element with value1, make a request to the server, and update the element with value2 when resutlt comes back
 document.addEventListener('DOMContentLoaded', async (event) => {
-    document.getElementById('conn_status').innerHTML = '<div>Loading...</div>';
+    document.getElementById('conn_status').innerHTML = "<span>Loading...</span>";
     var response = await fetch('proxy/db_conn_status');
     const myJson = await response.json();
     // console.log(myJson);
     var isConnectedToDB = myJson.value;
-    document.getElementById('conn_status').innerHTML = "<div>" + isConnectedToDB +"</div>";
+    document.getElementById('conn_status').innerHTML = "<span>" + isConnectedToDB +"</span>";
 
     // Once connection to the DB is made, load form enabling adding values to DB
     if (isConnectedToDB) {
@@ -28,4 +28,15 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         });
         document.getElementById('db_data').innerHTML = elementBuilder;
     }
+});
+
+document.addEventListener('DOMContentLoaded', async (event) => {
+    document.getElementById('instance_id').innerHTML =  "<span>Loading</span>";
+    document.getElementById('region').innerHTML =  "<span>Loading</span>";
+    var response = await fetch('proxy/cloud_metadata');
+    const myJson = await response.json();
+    var cloudInstanceId = myJson.instance_id;
+    var cloudRegion = myJson.region;
+    document.getElementById('instance_id').innerHTML = "<span>" + cloudInstanceId +"</span>";
+    document.getElementById('region').innerHTML = "<span>" + cloudRegion +"</span>";
 });

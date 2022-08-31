@@ -5,16 +5,20 @@
       <script src="static/js/appScripts.js"></script>
    </head>
    <body>
-      <p>This page is using instance: #### and Availability Zone: ####</p>
       <p>
-         <div>Connect to the DB using: </div>
-         <div>
-            <a href="settings">Settings</a>
-         </div>
+         <span>This page is using instance: </span>
+         <span id=instance_id></span>
+         <span>and Region: </span>
+         <span id=region></span>
       </p>
       <p>
-         <div>DB connection status: </div>
-         <div id="conn_status"></div>
+         <span>Use </span>
+         <a class="inline" href="settings">Settings</a>
+         <span> in order to connect to DB. </span>
+      </p>
+      <p>
+         <span>DB connection status: </span>
+         <span id="conn_status"></span>
       </p>
       <p id="add_item_to_db"></p>
       <p id="db_data"></p>
