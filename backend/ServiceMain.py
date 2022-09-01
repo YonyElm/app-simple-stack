@@ -1,7 +1,6 @@
 from flask import Flask, redirect, url_for, request
 from .DBManager import DBManager
-
-from ec2_metadata import ec2_metadata
+from .CloudMetadata import CloudMetadata
 
 server = Flask(__name__)
 dbconn = None
@@ -49,14 +48,8 @@ def listName():
 
 @server.route('/proxy/cloud_metadata', methods = ['GET'])
 def metadata():
-    # When cloud provider is AWS
-    try:
-        return {"region": ec2_metadata.region, "instance_id": ec2_metadata.instance_id}
-    # When no cloud provider
-    except:
-        return {"region": "NONE", "instance_id": "NONE"}
-
-
+    metadata = CloudMetadata()
+    return  metadata.getCloudMetadata()
 
 if __name__ == '__main__':
     server.run()

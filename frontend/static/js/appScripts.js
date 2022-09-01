@@ -37,6 +37,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     const myJson = await response.json();
     var cloudInstanceId = myJson.instance_id;
     var cloudRegion = myJson.region;
-    document.getElementById('instance_id').innerHTML = "<span>" + cloudInstanceId +"</span>";
-    document.getElementById('region').innerHTML = "<span>" + cloudRegion +"</span>";
+    document.getElementById('instance_id').innerHTML = "<span>" + cloudInstanceId + "</span>";
+    document.getElementById('region').innerHTML = "<span>" + cloudRegion + "</span>";
 });
